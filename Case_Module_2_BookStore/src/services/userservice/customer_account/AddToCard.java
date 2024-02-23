@@ -3,6 +3,7 @@ package services.userservice.customer_account;
 import controller.customer.CustomerHandlingProductController;
 import entity.product.Product;
 import entity.user.CurrentUser;
+import exception.DoNotHaveEnoughProduct;
 import repo.convertdata.product.MapNameProduct;
 import repo.getsetdata.product.GetSetCart;
 import services.userservice.ShowProductList;
@@ -22,12 +23,7 @@ public class AddToCard {
 
             boolean isNOTEnoughQuantity = mapNoProduct.get(choice).getQuantity() <= 0;
             if (isNOTEnoughQuantity) {
-                NewPage.newPage();
-                System.err.println("There are NOT enough quantity to add this product to cart.");
-                input.nextLine();
-                NewPage.newPage();
-                ShowProductList.show(mapNoProduct);
-                CustomerHandlingProductController.controller(mapNoProduct);
+                noticeDoNotEnoughProduct(mapNoProduct);
             } else {
                 Map<String, List<Product>> mapUsernameCart = (new GetSetCart()).getData();
                 CurrentUser currentUser = CurrentUser.getInstance();
@@ -54,10 +50,19 @@ public class AddToCard {
                             cloneProduct.setQuantity(1);
                             listCart.add(cloneProduct);
                         } else {
-                            cloneProduct.setQuantity(mapNameProduct.get(cloneProduct.getName()).getQuantity() + 1);
                             /**
                              * If after change, the quantity is greater than "In shop quantity" => Notice to customer
                              */
+                            try {
+                                boolean isNotEnoughProductToAdd = (mapNameProduct.get(cloneProduct.getName()).getQuantity()
+                                                                   + 1) > mapNoProduct.get(choice).getQuantity();
+                                if (isNotEnoughProductToAdd) {
+                                    throw new DoNotHaveEnoughProduct("Do not have enough product to add to cart.");
+                                }
+                                cloneProduct.setQuantity(mapNameProduct.get(cloneProduct.getName()).getQuantity() + 1);
+                            } catch (DoNotHaveEnoughProduct e) {
+                                noticeDoNotEnoughProduct(mapNoProduct);
+                            }
                             listCart.remove(mapNameProduct.get(cloneProduct.getName()));
                             listCart.add(cloneProduct);
                         }
@@ -111,6 +116,15 @@ public class AddToCard {
                     System.out.println("Do not have this feature.");
             }
         }
+    }
+
+    private void noticeDoNotEnoughProduct(Map<Integer, Product> mapNoProduct) {
+        NewPage.newPage();
+        System.err.println("There are NOT enough quantity to add this product to cart.");
+        input.nextLine();
+        NewPage.newPage();
+        ShowProductList.show(mapNoProduct);
+        CustomerHandlingProductController.controller(mapNoProduct);
     }
 
     private int wantToTryAgain() {
