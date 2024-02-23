@@ -59,6 +59,7 @@ public class AddProduct {
                 case 1:
                     addProduct();
                 case 2:
+                    NewPage.newPage();
                     StoreController.storeController();
                 default:
                     System.err.println("We do not have this feature.");

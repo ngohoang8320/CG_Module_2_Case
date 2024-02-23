@@ -1,5 +1,6 @@
 package services.userservice.customer_account;
 
+import controller.customer.CartPageController;
 import controller.customer.CustomerHandlingProductController;
 import entity.product.Product;
 import entity.user.CurrentUser;
@@ -20,6 +21,19 @@ public class AddToCard {
         try {
             int choice = input.nextInt();
             input.nextLine();
+            if (mapNoProduct.get(choice) == null) {
+                System.err.println("\nThere is no product at No. "
+                                   + choice
+                                   + "\nPlease choose the product base on the following table.");
+                input.nextLine();
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ix) {
+                    throw new RuntimeException(ix);
+                }
+                NewPage.newPage();
+                CartPageController.controller();
+            }
 
             boolean isNOTEnoughQuantity = mapNoProduct.get(choice).getQuantity() <= 0;
             if (isNOTEnoughQuantity) {

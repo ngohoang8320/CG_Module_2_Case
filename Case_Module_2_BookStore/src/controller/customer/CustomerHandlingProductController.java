@@ -7,17 +7,37 @@ import services.userservice.customer_account.AddToCard;
 import view.NewPage;
 import view.customer.CustomerHandlingProductPage;
 
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
 public class CustomerHandlingProductController {
+    private static int choice;
+
     public static void controller(Map<Integer, Product> noProductMap) {
         Scanner input = new Scanner(System.in);
 
         CustomerHandlingProductPage.getInstance().show();
         System.out.print("Your choice: ");
-        int choice = input.nextInt();
-        input.nextLine();
+        try {
+            choice = input.nextInt();
+            input.nextLine();
+        } catch (InputMismatchException e) {
+            System.err.println("We do not have this feature.");
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException i) {
+                throw new RuntimeException(i);
+            }
+            System.out.println("Please choose features represented of numbers based on the menu.");
+            input.nextLine();
+            input.nextLine();
+            NewPage.newPage();
+            ShowProductList.show(noProductMap);
+            controller(noProductMap);
+        }
+
+
         switch (choice) {
             case 1:
                 SortProduct sortProduct = new SortProduct();
@@ -39,6 +59,7 @@ public class CustomerHandlingProductController {
                 }
                 System.out.println("Please choose features represented of numbers based on the menu.");
                 input.nextLine();
+                NewPage.newPage();
                 ShowProductList.show(noProductMap);
                 controller(noProductMap);
         }

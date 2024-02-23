@@ -1,5 +1,9 @@
 package entity.product;
 
+import controller.owner.OwnerController;
+import services.productservice.CountAddProductTime;
+import view.NewPage;
+
 import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -74,22 +78,44 @@ public class Product implements Cloneable, Serializable {
         System.out.print("Enter product's origin price: ");
         try {
             originPrice = input.nextDouble();
-        } catch (InputMismatchException e) {
-            System.err.println("Wrong format for the price!");
             input.nextLine();
+        } catch (InputMismatchException e) {
+            input.nextLine();
+            new CountAddProductTime();
+            if (!CountAddProductTime.isAtLimitTimeInput()) {
+                System.err.println("Wrong format for the price!");
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                NewPage.newPage();
+                OwnerController.ownerController();
+            }
             setOriginPrice();
         }
-
-
     }
 
     public void setPromotionalPricing() {
         System.out.print("Enter product's promotional price: ");
         try {
             promotionalPricing = input.nextDouble();
-        } catch (InputMismatchException e) {
-            System.err.println("Wrong format for the price!");
             input.nextLine();
+        } catch (InputMismatchException e) {
+            input.nextLine();
+            new CountAddProductTime();
+            if (!CountAddProductTime.isAtLimitTimeInput()) {
+                System.err.println("Wrong format for the price!");
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                NewPage.newPage();
+                OwnerController.ownerController();
+            }
             setPromotionalPricing();
         }
     }
@@ -100,8 +126,19 @@ public class Product implements Cloneable, Serializable {
             quantity = input.nextInt();
             input.nextLine();
         } catch (InputMismatchException e) {
-            System.err.println("Wrong format for the quantity!");
             input.nextLine();
+            new CountAddProductTime();
+            if (!CountAddProductTime.isAtLimitTimeInput()) {
+                System.err.println("Wrong format for the price!");
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                NewPage.newPage();
+                OwnerController.ownerController();
+            }
             setQuantity();
         }
     }

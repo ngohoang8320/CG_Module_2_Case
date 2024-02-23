@@ -40,6 +40,7 @@ public class Remove {
                 } catch (InterruptedException ix) {
                     throw new RuntimeException(ix);
                 }
+                NewPage.newPage();
                 CartPageController.controller();
             } else {
                 listCart.remove(mapNoProduct.get(choice));
