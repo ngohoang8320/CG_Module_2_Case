@@ -7,6 +7,7 @@ import entity.user.CurrentUser;
 import entity.user.Owner;
 import entity.user.UserClass;
 import repo.convertdata.product.ListProduct;
+import repo.convertdata.product.MapIdProduct;
 import repo.convertdata.product.MapNameProduct;
 import repo.convertdata.user.MapUsernameUser;
 import repo.getsetdata.product.FormatProductData;
@@ -39,6 +40,9 @@ public class Payment {
     public void pay() {
         double price = (new ShowCart()).getTotal();
         boolean isEnoughMoney = currentUser.getMoney() >= price;
+
+        isEnoughQuantity();
+
 
         if (isEnoughMoney) {
             currentUser.setMoney(currentUser.getMoney() - price);
@@ -119,8 +123,46 @@ public class Payment {
             }
 
         } else {
-            System.err.println("You do not have enough money!");
+            NewPage.newPage();
+            System.err.println("You do not have enough money!\nPlease deposit more money!");
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Press Enter to go back.");
+            input.nextLine();
+            NewPage.newPage();
         }
+    }
+
+    private void isEnoughQuantity() {
+        MapIdProduct mapIdProduct = new MapIdProduct();
+        Map<Integer, Product> getMapIdProduct = mapIdProduct.getMapIdProduct();
+
+
+        GetSetCart getSetCart = new GetSetCart();
+        Map<String, List<Product>> mapUsernameCart = getSetCart.getData();
+        List<Product> listCart = mapUsernameCart.get(currentUser.getUserName());
+        for (Product product : listCart) {
+            boolean notEnoughQuantity = product.getQuantity() > getMapIdProduct.get(product.getId()).getQuantity();
+            if (notEnoughQuantity) {
+                NewPage.newPage();
+                System.err.println("Do not enough quantity for \""
+                                   + product.getName()
+                                   + "\"\nPlease check the quantity in the store and try again!");
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("Press Enter to go back to the previous page...");
+                input.nextLine();
+                NewPage.newPage();
+                CartPageController.controller();
+            }
+        }
+
     }
 
     private void writeToLog(double price) {

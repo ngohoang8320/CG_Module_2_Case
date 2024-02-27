@@ -20,9 +20,12 @@ public class SearchProduct {
         NewPage.newPage();
         System.out.print("Enter the name of the product you want to search: ");
         String productName = input.nextLine();
-        int limitDistance = 5;
         List<Product> listProduct = (new ListProduct()).getProductList();
         for (Product prod : listProduct) {
+            /**
+             * flexible limit
+             */
+            int limitDistance = (int) (prod.getName().length() * 0.6);
             if (LevenshteinDistance.calLevenshteinDistance(prod.getName(),
                     productName) <= limitDistance) {
                 searchedList.add(prod);

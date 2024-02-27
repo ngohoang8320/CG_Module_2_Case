@@ -30,16 +30,16 @@ public class ShowCart {
             Map<Integer, Product> mapNoProduct = (new MapNoProduct()).getMap(listCart);
             ShowProductList.show(mapNoProduct);
             total = getTotal();
-            System.out.printf("%92s\u001B[7m%s%20s\u001B[0m\n",
+            System.out.printf("%128s\u001B[7m%s%20s\u001B[0m\n",
                     "",
                     "",
                     "");
-            System.out.printf("%92s\u001B[7m%s\u001B[0m\u001B[1mTotal: %-8.2f($)\u001B[7m%s\u001B[0m\n",
+            System.out.printf("%128s\u001B[7m%s\u001B[0m\u001B[1mTotal: %-8.2f($)\u001B[7m%s\u001B[0m\n",
                     "",
                     " ",
                     total,
                     " ");
-            System.out.printf("%92s\u001B[7m%s%20s\u001B[0m\n",
+            System.out.printf("%128s\u001B[7m%s%20s\u001B[0m\n",
                     "",
                     "",
                     "");
