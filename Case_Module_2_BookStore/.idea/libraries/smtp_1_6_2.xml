@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="smtp-1.6.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/smtp-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/imap-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/pop3-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/gimap-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/logging-mailhandler-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/dsn-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/mailapi-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/javax.mail-api-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../javamaillib/javax.activation-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

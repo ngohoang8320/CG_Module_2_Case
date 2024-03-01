@@ -43,8 +43,8 @@ public class Remove {
                 NewPage.newPage();
                 CartPageController.controller();
             } else {
+                areYouSure(mapNoProduct.get(choice).getName());
                 listCart.remove(mapNoProduct.get(choice));
-
                 getSetCart.setData(mapUsernameCart);
                 NewPage.newPage();
             }
@@ -71,6 +71,21 @@ public class Remove {
                 default:
                     System.out.println("Do not have this feature.");
             }
+        }
+    }
+
+    private void areYouSure(String name) {
+        System.out.println("\nWould you really want to remove \"" + name + "\" from the cart?\n1. Yes\n2. No");
+        System.out.print("Your choice: ");
+        String choose = input.nextLine();
+        switch (choose) {
+            case "1":
+                break;
+            case "2":
+                CartPageController.controller();
+            default:
+                System.err.println("Just choose 1 (for Yes) or 2 (for No).");
+                areYouSure(name);
         }
     }
 

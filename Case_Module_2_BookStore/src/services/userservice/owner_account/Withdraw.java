@@ -57,7 +57,8 @@ public class Withdraw {
                 input.nextLine();
                 NewPage.newPage();
             } catch (DoNotHaveEnoughMoney m) {
-                System.err.println("You do not have enough money to withdraw.");
+                System.err.println("\nYou do not have enough money to withdraw.");
+                System.err.println("Your account balance: " + "\u001B[33m" + currentUser.getMoney() + " ($)\u001B[0m");
                 confirmTryAgain();
             }
         } catch (InputMismatchException e) {

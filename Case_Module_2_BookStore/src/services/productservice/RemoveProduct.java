@@ -62,6 +62,7 @@ public class RemoveProduct {
             }
         }
 
+
         System.out.println();
 
         Product referenceProduct = noProductMap.get(choseProduct);
@@ -72,6 +73,9 @@ public class RemoveProduct {
                 break;
             }
         }
+
+        areYouSure(productToEdit.getName(),
+                noProductMap);
 
         listProduct.remove(productToEdit);
 
@@ -118,5 +122,25 @@ public class RemoveProduct {
             return wantToTryAgain();
         }
         return choiceTry;
+    }
+
+    private void areYouSure(String name,
+                            Map<Integer, Product> noProductMap) {
+        System.out.println("\nWould you really want to remove \"" + name + "\" from the cart?\n1. Yes\n2. No");
+        System.out.print("Your choice: ");
+        String choose = input.nextLine();
+        switch (choose) {
+            case "1":
+                NewPage.newPage();
+                break;
+            case "2":
+                NewPage.newPage();
+                ShowProductList.show(noProductMap);
+                OwnerHandlingProductController.controller(noProductMap);
+            default:
+                System.err.println("Just choose 1 (for Yes) or 2 (for No).");
+                areYouSure(name,
+                        noProductMap);
+        }
     }
 }

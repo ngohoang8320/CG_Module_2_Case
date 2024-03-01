@@ -124,6 +124,7 @@ public class Payment {
 
         } else {
             NewPage.newPage();
+            System.err.println("\nYour account balance: " + "\u001B[33m" + currentUser.getMoney() + " ($)\u001B[0m");
             System.err.println("You do not have enough money!\nPlease deposit more money!");
             try {
                 Thread.sleep(200);

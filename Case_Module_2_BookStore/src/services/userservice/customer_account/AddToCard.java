@@ -37,7 +37,8 @@ public class AddToCard {
 
             boolean isNOTEnoughQuantity = mapNoProduct.get(choice).getQuantity() <= 0;
             if (isNOTEnoughQuantity) {
-                noticeDoNotEnoughProduct(mapNoProduct);
+                noticeDoNotEnoughProduct(mapNoProduct,
+                        mapNoProduct.get(choice));
             } else {
                 Map<String, List<Product>> mapUsernameCart = (new GetSetCart()).getData();
                 CurrentUser currentUser = CurrentUser.getInstance();
@@ -75,7 +76,8 @@ public class AddToCard {
                                 }
                                 cloneProduct.setQuantity(mapNameProduct.get(cloneProduct.getName()).getQuantity() + 1);
                             } catch (DoNotHaveEnoughProduct e) {
-                                noticeDoNotEnoughProduct(mapNoProduct);
+                                noticeDoNotEnoughProduct(mapNoProduct,
+                                        mapNoProduct.get(choice));
                             }
                             listCart.remove(mapNameProduct.get(cloneProduct.getName()));
                             listCart.add(cloneProduct);
@@ -132,8 +134,10 @@ public class AddToCard {
         }
     }
 
-    private void noticeDoNotEnoughProduct(Map<Integer, Product> mapNoProduct) {
+    private void noticeDoNotEnoughProduct(Map<Integer, Product> mapNoProduct,
+                                          Product choseProduct) {
         NewPage.newPage();
+        System.err.println("The " + choseProduct.getName() + "\'s quantity: " + choseProduct.getQuantity());
         System.err.println("There are NOT enough quantity to add this product to cart.");
         input.nextLine();
         NewPage.newPage();

@@ -111,12 +111,14 @@ public class EditQuantity {
         Map<String, Product> mapNameProduct = (new MapNameProduct(listProduct)).getMapNameProduct(listProduct);
 
         if (newQuantity < 0 || newQuantity > mapNameProduct.get(mapNoProduct.get(choice).getName()).getQuantity()) {
+            System.err.println("\nThe "
+                               + mapNoProduct.get(choice).getName()
+                               + "\'s quantity: "
+                               + mapNameProduct.get(mapNoProduct.get(choice).getName()).getQuantity());
             System.err.println("The quantity you entered is not right or greater than product's quantity.\nPlease try again!");
             input.nextLine();
-            return enterNewQuantity(choice,
-                    mapNoProduct);
+            return mapNoProduct.get(choice).getQuantity();
         }
-
         return newQuantity;
     }
 }

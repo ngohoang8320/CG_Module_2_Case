@@ -25,6 +25,9 @@ public class OwnerHandlingProductPage {
                 "Remove Product");
         System.out.printf("%-4s%-30s\n",
                 "4.",
+                "Search");
+        System.out.printf("%-4s%-30s\n",
+                "5.",
                 "Back");
 
         System.out.println();

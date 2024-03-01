@@ -80,17 +80,20 @@ public class UserClass {
     }
 
     public void setUserName() {
+        NewPage.newPage();
+        System.out.println("\u001B[36mUSERNAME: \u001B[0m");
+        System.err.println("Username must be at least 6 characters, include at least one uppercase letter and number!");
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.print("Enter your user name: ");
         userName = input.nextLine();
         if (!AccountRegex.checkUserName(userName)) {
             new CountSignTime();
             if (!CountSignTime.isAtLimitTimeInput()) {
-                System.err.println("Username must be at least 6 characters, include at least one uppercase letter and number!");
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                NewPage.newPage();
                 setUserName();
             } else {
                 NewPage.newPage();
@@ -102,17 +105,20 @@ public class UserClass {
     }
 
     public void setPassword() {
+        NewPage.newPage();
+        System.out.println("\u001B[36mPASSWORD: \u001B[0m");
+        System.err.println("Password must be at least 6 characters, include at least one uppercase letter, number and a special character!");
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.print("Enter your password: ");
         password = input.nextLine();
         if (!AccountRegex.checkPassword(password)) {
             new CountSignTime();
             if (!CountSignTime.isAtLimitTimeInput()) {
-                System.err.println("Password must be at least 6 characters, include at least one uppercase letter, number and a special character!");
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                NewPage.newPage();
                 setPassword();
             } else {
                 NewPage.newPage();
@@ -124,17 +130,20 @@ public class UserClass {
     }
 
     public void setPhoneNumber() {
+        NewPage.newPage();
+        System.out.println("\u001B[36mPHONE NUMBER: \u001B[0m");
+        System.err.println("Phone number have to follow this format 0x{8} or 0x{9}!");
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.print("Enter your phone number: ");
         phoneNumber = input.nextLine();
         if (!AccountRegex.checkPhoneNumber(phoneNumber)) {
             new CountSignTime();
             if (!CountSignTime.isAtLimitTimeInput()) {
-                System.err.println("Phone number have to follow this format 0x{8} or 0x{9}!");
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                NewPage.newPage();
                 setPhoneNumber();
             } else {
                 NewPage.newPage();
@@ -146,6 +155,8 @@ public class UserClass {
     }
 
     public void setEmail() {
+        NewPage.newPage();
+        System.out.println("\u001B[36mEMAIL: \u001B[0m");
         System.out.print("Enter your email: ");
         email = input.nextLine();
         if (!AccountRegex.checkEmail(email)) {
@@ -157,6 +168,7 @@ public class UserClass {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                NewPage.newPage();
                 setEmail();
             } else {
                 NewPage.newPage();

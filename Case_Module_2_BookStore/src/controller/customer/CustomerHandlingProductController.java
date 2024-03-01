@@ -1,6 +1,7 @@
 package controller.customer;
 
 import entity.product.Product;
+import repo.getsetdata.product.SearchProduct;
 import services.productservice.SortProduct;
 import services.userservice.ShowProductList;
 import services.userservice.customer_account.AddToCard;
@@ -48,6 +49,10 @@ public class CustomerHandlingProductController {
                 addToCard.add(noProductMap);
                 controller(noProductMap);
             case 3:
+                SearchProduct searchProduct = new SearchProduct();
+                Map<Integer, Product> searchedProductMap = searchProduct.search();
+                CustomerHandlingProductController.controller(searchedProductMap);
+            case 5:
                 NewPage.newPage();
                 StoreController.storeController();
             default:

@@ -19,7 +19,6 @@ public class SignIn {
     private GetSetData account = new GetSetAccount();
 
     public void signIn() {
-        NewPage.newPage();
         user.setUserName();
         if (CheckUsername.check(user.getUserName())) {
             user.setPassword();

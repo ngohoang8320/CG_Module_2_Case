@@ -1,6 +1,7 @@
 package controller.owner;
 
 import entity.product.Product;
+import repo.getsetdata.product.SearchProduct;
 import services.productservice.EditProduct;
 import services.productservice.RemoveProduct;
 import services.productservice.SortProduct;
@@ -51,6 +52,10 @@ public class OwnerHandlingProductController {
                 Map<Integer, Product> afterRemoveProductMap = removeProduct.remove(noProductMap);
                 controller(afterRemoveProductMap);
             case 4:
+                SearchProduct searchProduct = new SearchProduct();
+                Map<Integer, Product> searchedProductMap = searchProduct.search();
+                OwnerHandlingProductController.controller(searchedProductMap);
+            case 5:
                 NewPage.newPage();
                 OwnerController.ownerController();
             default:

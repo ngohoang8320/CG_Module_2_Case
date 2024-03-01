@@ -22,6 +22,9 @@ public class CustomerHandlingProductPage {
                 "Add product to cart");
         System.out.printf("%-4s%-30s\n",
                 "3.",
+                "Search");
+        System.out.printf("%-4s%-30s\n",
+                "5.",
                 "Back");
         System.out.println();
     }
